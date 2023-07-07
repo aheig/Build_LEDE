@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [lede-ssr]
+        target: [Lean]
     
     steps:
     - name: 检查
@@ -88,7 +88,7 @@ jobs:
 
     - name: 自定义配置 ${{matrix.target}}
       env:
-        CONFIG_FILE: '${{matrix.target}}.config'
+        CONFIG_FILE: 'lede-ssr.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
