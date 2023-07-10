@@ -64,12 +64,8 @@ jobs:
 
       - name: Generate configuration file
         run: |
-          cd openwrt
-          make defconfig
-          cd ..
           mv lede-ssr.config openwrt/.config
           cd openwrt
-          ./scripts/feeds install -a
           make defconfig
  
       - name: Download packages
