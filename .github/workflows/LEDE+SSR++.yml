@@ -130,6 +130,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE2_TOKEN }}
         with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          body_path: release.txt
+          files: ${{ env.FIRMWARE }}/*
