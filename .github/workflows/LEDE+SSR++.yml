@@ -115,17 +115,14 @@ jobs:
           path: openwrt/bin/targets/
       
       - name: 生成发布标签
-        id: tag
-        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-        run: |
-          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-          touch release.txt
-          [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
-          [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-          echo "status=success" >> $GITHUB_OUTPUT
-
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        touch release.txt
+        echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
+        echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
+        echo "status=success" >> $GITHUB_OUTPUTname: Generate release tag
+        
       - name: 上传固件发布
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE2_TOKEN }}
