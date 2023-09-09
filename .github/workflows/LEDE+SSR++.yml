@@ -123,7 +123,7 @@ jobs:
           echo "status=success" >> $GITHUB_OUTPUTname: Generate release tag
         
       - name: 上传固件发布
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@v1
         if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE2_TOKEN }}
