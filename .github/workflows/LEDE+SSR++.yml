@@ -115,11 +115,13 @@ jobs:
           path: openwrt/bin/targets/
       
       - name: 生成发布标签
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-        touch release.txt
-        echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
-        echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo "status=success" >> $GITHUB_OUTPUTname: Generate release tag
+              id: tag
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+          touch release.txt
+          echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
+          echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
+          echo "status=success" >> $GITHUB_OUTPUTname: Generate release tag
         
       - name: 上传固件发布
         uses: softprops/action-gh-release@v3
