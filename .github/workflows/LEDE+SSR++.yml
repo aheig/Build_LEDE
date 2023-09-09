@@ -115,7 +115,6 @@ jobs:
           path: openwrt/bin/targets/
       
       - name: 生成发布标签
-              id: tag
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
           touch release.txt
