@@ -54,7 +54,7 @@ jobs:
       - name: 更新 feeds
         run: |
           cd openwrt
-          git clone https://github.com/fw876/helloworld -b main helloworld
+          echo "src-git helloworld https://github.com/fw876/helloworld.git;main" >> "feeds.conf.default"
           ./scripts/feeds update -a
       - name: 自定义配置
         run: |
