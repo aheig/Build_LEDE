@@ -54,7 +54,7 @@ jobs:
       - name: 更新 feeds
         run: |
           cd openwrt
-          sed -i '$a\src-git helloworld https://github.com/fw876/helloworld.git;main' >> "feeds.conf.default"
+          sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git;main' feeds.conf.default
           ./scripts/feeds update -a
       - name: 自定义配置
         run: |
