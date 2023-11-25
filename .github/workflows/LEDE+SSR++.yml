@@ -69,7 +69,8 @@ jobs:
           mv lede-ssr.config openwrt/.config
           cd openwrt
           make defconfig
- 
+          sed -i '/^.*DISTRIB_DESCRIPTION.*$/d' /etc/openwrt_release
+          echo "DISTRIB_REVISION='R23.11.26 by Hihoo'" >> /etc/openwrt_release
       - name: 下载软件包
         run: |
           cd openwrt
